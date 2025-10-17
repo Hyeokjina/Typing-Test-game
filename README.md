@@ -40,6 +40,7 @@ JSP/Java 프로젝트 구조를 기반으로 **객체지향적 설계**와 **데
 ---
 
 ## 🛠️ 프로젝트 구조
+<pre>
 C:.
 ├─bin
 ├─resources
@@ -67,6 +68,7 @@ C:.
 │ └─UserService.java # 사용자 비즈니스 로직
 └─view
 └─GameUserMenu.java # 콘솔 메뉴 UI
+</pre>
 
 ## 🚀 실행 방법
 1. 프로젝트를 IDE(Eclipse, IntelliJ 등)로 임포트
