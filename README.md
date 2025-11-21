@@ -1,94 +1,192 @@
-# Typing Test Game
+# 🎮 Typing Test Game
 
-## 🎮 개요
-Typing Test Game은 **콘솔 기반의 타자 연습 게임**입니다.  
-화면에 나타나는 무작위 문자열을 제한 시간 내에 정확히 입력하는 것이 목표이며, 난이도와 단계가 점점 상승합니다.  
-JSP/Java 프로젝트 구조를 기반으로 **객체지향적 설계**와 **데이터 관리(DB 연동)** 기능을 포함하고 있습니다.
+콘솔 기반 타자 연습 게임입니다. 사용자 인증, 회원 관리, 관리자 기능, 스테이지별 난이도 상승 등 다양한 기능을 제공하는 JDBC 기반 콘솔 게임입니다.
 
----
+<br>
 
-## 📝 주요 기능
+## 📌 프로젝트 개요
 
-### 1. 게임 규칙
-- 화면에 나타나는 문자열을 제한 시간 내 정확히 입력
-- 문자열 구성: 알파벳 대/소문자, 숫자, 특수문자
-- 게임은 여러 단계(Stage)로 진행, 단계별 문제 수 증가
-- 각 단계 제한 시간: 20초 (변경 가능)
-- 정확히 입력해야 통과, 오답 시 재입력 가능
-- 제한 시간 초과 시 게임 종료
-- 클리어 단계 수가 최종 점수로 기록
+**Typing Test Game**은 콘솔 화면에 나타나는 무작위 문자열을 제한 시간 내에 정확하게 입력하는 게임입니다.  
+단계가 올라갈수록 문제 수와 난이도가 증가하며, 성공한 최고 스테이지가 최종 점수로 기록됩니다.
 
-**자세한 룰 클래스:** `src/com/my/jdbc/game/Rule.java`
+### 주요 특징
+- ✅ 콘솔 UI 기반 실행
+- ✅ 회원가입 / 로그인 시스템
+- ✅ 관리자 모드 제공
+- ✅ 사용자별 최고 기록 저장
+- ✅ JDBC를 활용한 데이터베이스 연동
 
----
+<br>
 
-### 2. 단계 및 문제 구성
+## 🕹️ 게임 규칙
+
+1. **문제 출제**: 무작위 문자열(알파벳, 숫자, 특수문자 포함)이 출력됩니다
+2. **제한 시간**: 각 단계마다 **20초** 제한
+3. **정답 처리**: 정확히 입력하면 통과, 오답 시 재입력 가능
+4. **게임 종료**: 시간 초과 시 즉시 게임 종료
+5. **난이도**: 스테이지 번호만큼 문제 수 증가 (1단계 → 1문제, 2단계 → 2문제)
+
+<br>
+
+## 🧩 단계별 구성
+
 | 단계 | 문제 수 | 문자열 길이 |
-|------|----------|------------|
-| 1    | 1        | 5          |
-| 2    | 2        | 5~10       |
-| 3    | 3        | 5~10       |
-| ...  | ...      | ...        |
+|:---:|:------:|:---------:|
+| 1   | 1개    | 5자       |
+| 2   | 2개    | 5~10자    |
+| 3   | 3개    | 5~10자    |
+| ... | ...    | ...       |
 
----
+<br>
 
-### 3. 데이터 관리
-- 사용자 정보 및 점수 관리: `User.java`, `ScoreDao.java`, `UserDao.java`
-- 점수, 사용자 기록 DB 연동 가능
-- SQL 쿼리 파일: `resources/query.xml`
+## 🛠️ 기술 스택
 
----
+- **Language**: Java 11+
+- **Database**: JDBC (Oracle / MySQL)
+- **UI**: Console Based
 
-## 🛠️ 프로젝트 구조
-<pre>
+<br>
+
+## 📁 프로젝트 구조
+```
 C:.
-├─bin
 ├─resources
-│ ├─driver.properties # DB 연결 설정
-│ └─query.xml # SQL 쿼리 모음
-└─src
-└─com/my/jdbc
-├─controller
-│ ├─ScoreController.java # 점수 관련 요청 처리
-│ └─UserController.java # 사용자 관련 요청 처리
-├─game
-│ ├─AdminAdjustment.java # 관리자 게임 설정
-│ ├─PlayGame.java # 게임 진행 로직
-│ └─Rule.java # 게임 규칙 출력
-├─model
-│ ├─dao
-│ │ ├─ScoreDao.java # 점수 DB 접근
-│ │ └─UserDao.java # 사용자 DB 접근
-│ └─vo
-│ └─User.java # 사용자 VO 클래스
-├─run
-│ └─Run.java # 게임 시작 진입점
-├─service
-│ ├─ScoreService.java # 점수 비즈니스 로직
-│ └─UserService.java # 사용자 비즈니스 로직
-└─view
-└─GameUserMenu.java # 콘솔 메뉴 UI
-</pre>
+│  ├─driver.properties       # DB 연결 설정
+│  └─query.xml               # SQL 쿼리 모음
+└─src/com/my/jdbc
+   ├─controller
+   │   ├─ScoreController.java
+   │   └─UserController.java
+   ├─game
+   │   ├─AdminAdjustment.java
+   │   ├─PlayGame.java
+   │   └─Rule.java
+   ├─model
+   │   ├─dao
+   │   │   ├─ScoreDao.java
+   │   │   └─UserDao.java
+   │   └─vo
+   │       └─User.java
+   ├─run
+   │   └─Run.java
+   └─view
+       └─GameUserMenu.java
+```
+
+<br>
 
 ## 🚀 실행 방법
-1. 프로젝트를 IDE(Eclipse, IntelliJ 등)로 임포트
-2. DB 설정 파일(`resources/driver.properties`) 수정
-3. `Run.java` 실행
-4. 콘솔 메뉴에 따라 게임 시작
 
----
+1. 프로젝트를 IDE(Eclipse/IntelliJ)로 임포트
+2. `resources/driver.properties`에서 DB 연결 정보 설정
+3. `src/com/my/jdbc/run/Run.java` 실행
+4. 콘솔 메뉴를 따라 게임 시작
 
-## 💡 사용 클래스
-- **Run.java** : 게임 시작 진입점
-- **PlayGame.java** : 게임 로직, 점수 계산
-- **Rule.java** : 게임 규칙 출력
-- **GameUserMenu.java** : 콘솔 메뉴 UI
-- **ScoreDao/UserDao** : DB 연동
-- **ScoreService/UserService** : 비즈니스 로직 처리
+<br>
 
----
+## 🎬 실행 예시
 
-## 📌 기술 스택
-- Java 11 이상
-- JDBC (DB 연동)
-- 콘솔 UI 기반
+### 🔐 관리자 로그인
+```
+============ Typing Test ============
+1. 로그인
+2. 회원 가입
+3. 관리자 
+메뉴 입력 : 3
+관리자키 번호 입력 : 777
+인증 성공!
+
+============ 관리자 메뉴 ============
+1. 전체 회원 정보 확인
+2. 아이디로 회원 찾기
+3. 초기화면으로 돌아가기
+메뉴 입력 : 1
+
+[회원 목록 출력...]
+User [userNo=1, userId=user01, ...]
+User [userNo=2, userId=user02, ...]
+```
+
+### 🧑 회원 가입
+```
+========= 회원 추가 ===========
+아이디 : user05
+비밀번호 : pass05
+이름 : 이순신
+성별(M,F) : M
+나이 : 44
+이메일 : user05@naver.com
+전화번호 : 01055555555
+
+서비스 요청 성공 : 성공적으로 회원이 추가되었습니다.
+```
+
+### 🔓 로그인
+```
+========= 로그인 ===========
+아이디 : user05
+비밀번호 : pass05
+로그인 성공! 게임 메뉴로 이동합니다.
+```
+
+### 🎮 게임 진행
+```
+========= 단계 1 =========
+문제: e*$#C
+입력: e*$#C
+단계 1 성공!
+
+========= 단계 2 =========
+문제 1: 0XbT+
+입력: 0XbT+
+문제 2: %DN-O
+입력: %DN-O
+단계 2 성공!
+
+========= 단계 4 =========
+문제 1: sAvla
+입력: ssssss → 오답
+입력: sAvla → 정답
+문제 2: G+txw
+입력: ggggg → 오답
+
+시간 초과! 실패
+게임 종료! 총 성공 단계: 3
+```
+
+### 🏆 랭킹 확인
+```
+========= 전체 랭킹 =========
+user01 → 5 stage
+user03 → 4 stage
+user05 → 3 stage
+user02 → 3 stage
+```
+
+<br>
+
+## 📚 주요 기능
+
+### 사용자 기능
+- 회원 가입 및 로그인
+- 개인 정보 수정
+- 게임 플레이
+- 랭킹 조회
+- 게임 규칙 확인
+
+### 관리자 기능
+- 전체 회원 정보 조회
+- 특정 회원 검색
+- 회원 관리
+
+### 게임 시스템
+- 스테이지별 난이도 증가
+- 실시간 타이머
+- 점수 기록 및 저장
+- 오답 재입력 기능
+
+<br>
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
